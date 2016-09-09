@@ -1,0 +1,31 @@
+ex1:
+
+Compute cost:
+
+
+The objective of linear regression this time is to minimize the cost function
+J as linear regression, each ans goes to visualization. theta coming from gradient descent.
+
+
+gradient descent:
+
+theta  = like an array with [0;0]
+
+start putting data into it.
+since Octave array starts from ONE, the index for this array will start from 1.
+
+alpha is learning rate
+
+X = data(:, 1); y = data(:, 2);
+
+
+  %video : Gradient Descent 9:00: correct: simultaneous update
+    % this time from 1, not 0
+    % sum is the best way to avoid loop
+    % theta are all column vector with 2 elements
+    % .* when two matrices element 
+    %   http://www.glue.umd.edu/afs/glue.umd.edu/system/info/olh/Numerical/Matlab_Matrix_Manipulation_Software/Matrix_Vector_Operations/elementwise
+	for more matrix example.
+
+
+element wise operation: rather doing n

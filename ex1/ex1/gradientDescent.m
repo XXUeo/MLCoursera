@@ -19,10 +19,12 @@ for iter = 1:num_iters
     %video : Gradient Descent 9:00: correct: simultaneous update
     % this time from 1, not 0
     % sum is the best way to avoid loop
-    % X,y,theta are all column vector with 2 elements
+    % theta is column vector with 2 elements
+    % .* when two matrices element 
+    % X(:, 1) = all 1
 
-    temp1 = theta(1) - alpha * (1 / m) * sum(((theta * X) - y) .* X(:, 1));
-    temp2 = theta(2) - alpha * (1 / m) * sum(((theta * X) - y) .* X(:, 2));
+    temp1 = theta(1) - alpha * (1 / m) * sum(((X * theta) - y) .* X(:, 1));
+    temp2 = theta(2) - alpha * (1 / m) * sum(((X * theta) - y) .* X(:, 2));
 
   
     theta(1) = temp1;
