@@ -29,3 +29,69 @@ X = data(:, 1); y = data(:, 2);
 
 
 element wise operation: rather doing n
+
+
+
+
+ex2
+
+
+Cost function:
+	== smilar to linear regression 
+but if we implement logistic regression as linear regression, it will be convex since sigmoid function is different.
+
+
+1.2.2 Cost function and gradient
+
+if y  =  1
+ -log(hypo(x))
+
+if y  = 0
+ -log(1-hypo(x))
+
+
+
+** in ex1, hypo(x) = X*theta
+ but this time, using sigmoid, hypo(x) => sigmoid.
+we need to pass hypo(x) to sigmoid 
+
+
+
+
+Logistic regression
+y = 0 r 1 always
+
+cost = -ylog(hypo(x)) - (1-y)log(1-hypo(x))
+
+definition of hypo is different here
+hypo(x) = 1 / 1+e^-(root^t)*x
+
+
+Multiclass classification
+
+one vs all
+
+classify for each case
+
+
+
+
+Overfitting
+:undercutting, high bias
+:overfitting, high various — too many hypo. fail
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
