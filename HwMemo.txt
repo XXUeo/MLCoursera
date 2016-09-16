@@ -80,6 +80,8 @@ Overfitting
 :undercutting, high bias
 :overfitting, high various — too many hypo. fail
 
+generally too much bias -> underfit
+	  too small bias -> overfit 
 
 
 
