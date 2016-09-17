@@ -16,7 +16,7 @@ all_theta = zeros(num_labels, n + 1);
 
 % Add ones to the X data matrix
 X = [ones(m, 1) X];
-
+%because first column of X must be bias unitss
 % ====================== YOUR CODE HERE ======================
 % Instructions: You should complete the following code to train num_labels
 %               logistic regression classifiers with regularization
@@ -52,8 +52,23 @@ X = [ones(m, 1) X];
 
 
 
+initial_theta = zeros(n+1,1);
+
+options = optimset('GradObj', 'on', 'MaxIter', 50);
 
 
+%binary array will only return 0 or 1. we iterate over to find the location
+%of given num. this time y;
+%all_theta(i,:) for each row
+%for fmincg, initial_theta has to be column vector fitting all_theta. ex.
+%all_theta = (i,:), initial_theta = (:,i) 
+%y = (5000,1), m = 5000, n = 400, num_labels = 10,
+%all_theta(10,401), initial_theta(401,1), X(5000,400)
+
+
+for i = 1:num_labels
+	all_theta(i,:) = fmincg (@(t)(lrCostFunction(t, X, (y == i), lambda)), initial_theta, options);
+end
 
 
 

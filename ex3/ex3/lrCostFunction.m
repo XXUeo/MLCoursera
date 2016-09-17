@@ -36,8 +36,16 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+sig = sigmoid(X * theta);
+grad = (1 / m) * X' * (sig - y);
 
 
+J = (1/m) * (-y' * log(sig) - (1 - y') * log(1 - sig));
+
+J = J + (lambda / (2 * m)) * sum(theta(2:size(theta)) .^ 2);
+
+% regularization for gradient values
+grad = grad + (lambda / m) * [0; theta(2:end)]; % <--- it sets' (1,1)  = 0
 
 
 
