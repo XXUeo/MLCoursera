@@ -86,6 +86,23 @@ generally too much bias -> underfit
 
 
 
+week5
+
+Binary classification VS multi-class classification(K class)
+
+binary : k = 1, number of output units = SL = 1
+multi: : K = number of class, SL = K(K > K-1)
+
+multi = K * logistil regression + L()
+
+
+=======
+gradient computation
+=======
+
+Intuition: delta^(l)j = ‘error’ of node j in layer l.
+   
+
 
 
 
