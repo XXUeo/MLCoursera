@@ -39,6 +39,34 @@ Theta2_grad = zeros(size(Theta2));
 %         cost function computation is correct by verifying the cost
 %         computed in ex4.m
 %
+
+
+% first, follwing neural network structure, feedForward it like we did in predict ex3
+%keeping track of node's route for each 
+%k = num_labels. y needs to be vector of
+y = eye(num_labels)(y,:);
+
+a1 = [ones(m, 1) X];   
+z2 = a1 *Theta1';
+a2 = sigmoid(z2);   
+a2 = [ones(m, 1) a2];
+
+a3 = sigmoid(a2*Theta2');  
+
+J = 1 / m * sum((- y .* log(a3) - (1 - y) .* log(1 - a3))(:));
+%(:) is used to select all the row and column of matrix
+
+%size(y) = (5000, 10)
+%size(log(a3)) = (5000, 10)
+%size(J) = (1,1)
+%size(Theta1) = (25, 401)
+%size(Theta2) = (10, 26)
+%size(Theta1_grad) = (25, 401)
+%size(Theta2_grad) = (10, 26)
+% L = number of layers = 3
+
+
+
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
 %         the cost function with respect to Theta1 and Theta2 in Theta1_grad and
@@ -53,6 +81,23 @@ Theta2_grad = zeros(size(Theta2));
 %         Hint: We recommend implementing backpropagation using a for-loop
 %               over the training examples if you are implementing it for the 
 %               first time.
+
+
+
+
+%you should not be regularizing the terms that correspond to the bias.
+%For the matrices Theta1 and Theta2, this corresponds to the first 
+%column of each matrix. 
+%size(Theta1) = (25,401) => (25, 400)
+
+J_Reg = lambda / (2 * m) * (sum(Theta1(:,2:end)(:) .^ 2) + sum(Theta2(:,2:end)(:) .^ 2));
+
+J += J_Reg
+
+
+
+
+
 %
 % Part 3: Implement regularization with the cost function and gradients.
 %
@@ -62,20 +107,37 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+%algorithm for bakckpropagation:
+%layer = 3
+%delta(3) = a(3) - y
+%delta(2) = Theta(2) with no regularized bias * delta(3) .* [a(2) .* (1-a(2)) 
+%[] part is sigmoid function (later)
 
+delta_3 = a3 - y;
+%size(Theta2(:,2:end)') = (25,10)
+%size(delta_3') = (10, 5000)
+delta_2 = (Theta2(:,2:end)' * delta_3')' .* sigmoidGradient(z2);
+%notice (A' * B')' = B * A
 
+%size(delta_3) = (5000,10)
+%size(delta_2) = (5000, 25)
+%size(a2/m) = (5000,26)
+%size(a1/m) = (5000,401)
 
+Theta2_grad = delta_3' * a2 / m;
+Theta1_grad = delta_2' * a1 / m;
 
+%size(Theta2_grad(:,2:end)) = (10,25)
+%size(Theta1_grad(:,2:end)) = (25,400)
+%size(Theta2(:,2:end)) = (10,25)
+%size(Theta1(:,2:end)) = (25,400)
 
+% you will see theta1 through sgmoid and met theta2
+% and go to theta2_grad and delta3.
 
-
-
-
-
-
-
-
-
+%regularization
+Theta2_grad(:,2:end) += lambda / m * Theta2(:,2:end);
+Theta1_grad(:,2:end) += lambda / m * Theta1(:,2:end);
 
 
 

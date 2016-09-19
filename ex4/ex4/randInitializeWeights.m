@@ -19,9 +19,15 @@ W = zeros(L_out, 1 + L_in);
 % Note: The first row of W corresponds to the parameters for the bias units
 %
 
+% setting initialization to random instead of zero is important in neural network
+% because after each update, parameters corresponding to inputs going into each 
+% of twn hidden units are identical.
+%One effective strategy for choosing spsilon_init is to base it on the number of units in the network.
+%A good choice of epsilon_init is epsilon_init = root 6 / ( rootL(in) + root(out)), where Lin = sl and Lout = sl+1 are
+%Lin +Lout the number of units in the layers adjacent to theta(l).
 
-
-
+epsilon_init = 0.12;
+W = rand(L_out, 1 + L_in) * 2 * epsilon_init - epsilon_init
 
 
 
