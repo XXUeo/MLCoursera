@@ -38,10 +38,10 @@ grad = zeros(size(theta));
 
 sig = sigmoid(X * theta);
 grad = (1 / m) * X' * (sig - y);
-
-size(y')
-size(log(sig))
-size(theta)
+%
+%%size(y')
+%size(log(sig))
+%size(theta)
 J = (1/m) * (-y' * log(sig) - (1 - y') * log(1 - sig));
 
 J = J + (lambda / (2 * m)) * sum(theta(2:size(theta)) .^ 2);

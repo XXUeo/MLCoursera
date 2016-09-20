@@ -13,6 +13,10 @@ J = 0;
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
 
+%size(X) = (97,2)
+%size(y) = (97,1)
+%size(theta) = (2,1)
+%size(X*theta -y) = (97,1)
 J = 1/(2* m) * sum((X*theta - y).^2);
 
 
