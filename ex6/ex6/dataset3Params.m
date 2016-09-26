@@ -23,10 +23,27 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+test = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
+
+% these are the examples. find best pair
 
 
+for i =1: length(test)
+	for j = 1:length(test)
+		model = svmTrain(X, y, test(i), @(x1, x2) gaussianKernel(x1, x2, test(j)));
+        predictions = svmPredict(model, Xval);
+        err(i,j) = mean(double(predictions ~= yval));
+       
+	end;
+end;	
+
+[column, index] = min(err);
+
+[minError, minIndex] = min(column);
 
 
+C = test(index(minIndex));
+sigma = test(minIndex);
 
 
 % =========================================================================
